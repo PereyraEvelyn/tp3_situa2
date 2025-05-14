@@ -40,10 +40,10 @@ public class Transaccion {
     public boolean procesarTransaccion() {
         boolean pagoExitoso = this.formaDePago.procesarPago();
         if (pagoExitoso) {
-            System.out.println("Transacción " + idTransaccion + " realizada con éxito el " + fecha + ".");
+            System.out.println("Transaccion " + idTransaccion + " realizada con exito el " + fecha + ".");
             return true;
         } else {
-            System.out.println("Transacción " + idTransaccion + " fallida el " + fecha + ".");
+            System.out.println("Transaccion " + idTransaccion + " fallida el " + fecha + ".");
             return false;
         }
     }

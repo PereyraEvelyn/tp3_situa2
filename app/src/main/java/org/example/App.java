@@ -2,11 +2,11 @@ package org.example;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 public class App {
+
     public static void main(String[] args) {
          // Crear monedas
-        Moneda usd = new Moneda("USD", "Dólar Estadounidense", "$");
+        Moneda usd = new Moneda("USD", "Dolar Estadounidense", "$");
         Moneda eur = new Moneda("EUR", "Euro", "€");
         Moneda ars = new Moneda("ARS", "Peso Argentino", "$");
 
@@ -16,8 +16,8 @@ public class App {
         TasaDeCambio usdToArs = new TasaDeCambio(usd, ars, new BigDecimal("290.50"), hoy);
 
         // Crear clientes
-        Cliente cliente1 = new Cliente("C001", "Juan Pérez");
-        Cliente cliente2 = new Cliente("C002", "María García");
+        Cliente cliente1 = new Cliente("C001", "Juan Perez");
+        Cliente cliente2 = new Cliente("C002", "Maria Garcia");
 
         //Crear Cuentas Bancarias
         CuentaBancaria cuenta1 = new CuentaBancaria("123456", cliente1, new MonedaMonto(new BigDecimal("10000"), usd));
@@ -46,7 +46,7 @@ public class App {
         transaccion2.procesarTransaccion();
         transaccion3.procesarTransaccion();
 
-        System.out.println("Saldo de la cuenta de Juan Pérez después de la transacción: " + cuenta1.getSaldo());
+        System.out.println("Saldo de la cuenta de Juan Perez despues de la transaccion: " + cuenta1.getSaldo());
 
     }
 }

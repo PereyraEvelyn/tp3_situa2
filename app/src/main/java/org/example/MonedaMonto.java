@@ -18,12 +18,28 @@ public class MonedaMonto {
         return moneda;
     }
 
-    // Método para convertir a otra moneda (simplificado, requiere TasaDeCambio)
+    public MonedaMonto sumar(MonedaMonto otro){
+        if(!validarMoneda(otro)){
+            System.out.println("No se puede operar con monedas distintas" + this.moneda + "vs" + otro.moneda);
+            return this;
+        }
+        return new MonedaMonto(this.monto.add(otro.monto), this.moneda);
+
+    }
+
+     public MonedaMonto restar(MonedaMonto otro){
+        if(!validarMoneda(otro)){
+            System.out.println("No se puede operar con monedas distintas" + this.moneda + "vs" + otro.moneda);
+            return this;
+        }
+        return new MonedaMonto(this.monto.add(otro.monto), this.moneda);
+
+    }
+
     public MonedaMonto convertirA(Moneda monedaDestino, BigDecimal tasaDeCambio) {
         if (this.moneda.equals(monedaDestino)) {
-            return this; // No se necesita conversión
+            return this; 
         }
-        // Aquí se usaría la tasa de cambio para realizar la conversión
         BigDecimal montoConvertido = this.monto.multiply(tasaDeCambio);
         return new MonedaMonto(montoConvertido, monedaDestino);
     }

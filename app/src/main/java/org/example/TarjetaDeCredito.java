@@ -21,10 +21,10 @@ public class TarjetaDeCredito extends FormaDePago {
     public boolean procesarPago() {
         // Lógica para validar el límite de crédito, promociones, etc.
         if (limiteCredito.getMonto().compareTo(getMonto().getMonto()) >= 0) {
-            System.out.println("Pago con Tarjeta de Crédito Aprobado: " + getMonto());
+            System.out.println("Pago con Tarjeta de Credito Aprobado: " + getMonto());
             return true;
         } else {
-            System.out.println("Pago con Tarjeta de Crédito Rechazado: Límite de crédito excedido.");
+            System.out.println("Pago con Tarjeta de Credito Rechazado: Limite de credito excedido.");
             return false;
         }
     }
