@@ -22,14 +22,27 @@ public class Transaccion {
    
     public void procesarPago() {
         System.out.println("--- Iniciando Transaccion " + idTransaccion + " ---");
-        System.out.println("Fecha: " + fecha);
         System.out.println("Cliente: " + cliente);
         System.out.println("Monto a pagar: " + monto);
 
         this.exitosa = formaDePago.pagar(this.monto);
 
         System.out.println("Estado de la Transaccion: " + (exitosa ? "APROBADA" : "RECHAZADA"));
+
+        if (exitosa && formaDePago instanceof Notificable) {
+            Notificable pagoNotificable = (Notificable) formaDePago;
+            String mensaje = "Su pago de " + monto + " ha sido procesado exitosamente.";
+            
+            pagoNotificable.enviarNotificacion(mensaje, this.cliente);
+        }
+        // ------------------------------------
+
         System.out.println("------------------------------------------\n");
+    }
+    
+    
+    public String getIdTransaccion() {
+        return idTransaccion;
     }
 
     public boolean fueExitosa() {
