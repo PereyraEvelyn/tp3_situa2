@@ -1,18 +1,27 @@
 package org.example;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
     private String idCliente;
     private String nombre;
-    private List<CuentaBancaria> cuentasBancarias;
+     private List<CuentaBancaria> cuentas;
 
     public Cliente(String idCliente, String nombre) {
         this.idCliente = idCliente;
         this.nombre = nombre;
-        this.cuentasBancarias = new ArrayList<>();
+        this.cuentas = new ArrayList<>();
     }
 
+    public void agregarCuenta(CuentaBancaria cuenta) {
+        this.cuentas.add(cuenta);
+    }
+
+    public List<CuentaBancaria> getCuentas() {
+        return cuentas;
+    }
+    
     public String getIdCliente() {
         return idCliente;
     }
@@ -21,11 +30,8 @@ public class Cliente {
         return nombre;
     }
 
-    public List<CuentaBancaria> getCuentasBancarias() {
-        return cuentasBancarias;
-    }
-
-    public void agregarCuentaBancaria(CuentaBancaria cuenta) {
-        this.cuentasBancarias.add(cuenta);
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

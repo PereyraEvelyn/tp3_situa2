@@ -1,50 +1,38 @@
 package org.example;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Transaccion {
     private String idTransaccion;
+    private Date fecha;
     private Cliente cliente;
-    private FormaDePago formaDePago;
-    private MonedaMonto monto;
-    private LocalDate fecha;
+    private Monto monto;
+    private FormaDePago formaDePago; 
+    private boolean exitosa;
 
-    public Transaccion(String idTransaccion, Cliente cliente, FormaDePago formaDePago, MonedaMonto monto) {
+    public Transaccion(String idTransaccion, Cliente cliente, Monto monto, FormaDePago formaDePago) {
         this.idTransaccion = idTransaccion;
         this.cliente = cliente;
-        this.formaDePago = formaDePago;
         this.monto = monto;
-        this.fecha = LocalDate.now();
+        this.formaDePago = formaDePago;
+        this.fecha = new Date(); // fecha actual al crear la transacción
+        this.exitosa = false;    
     }
 
-    public String getIdTransaccion() {
-        return idTransaccion;
+   
+    public void procesarPago() {
+        System.out.println("--- Iniciando Transaccion " + idTransaccion + " ---");
+        System.out.println("Fecha: " + fecha);
+        System.out.println("Cliente: " + cliente);
+        System.out.println("Monto a pagar: " + monto);
+
+        this.exitosa = formaDePago.pagar(this.monto);
+
+        System.out.println("Estado de la Transaccion: " + (exitosa ? "APROBADA" : "RECHAZADA"));
+        System.out.println("------------------------------------------\n");
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public FormaDePago getFormaDePago() {
-        return formaDePago;
-    }
-
-    public MonedaMonto getMonto() {
-        return monto;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public boolean procesarTransaccion() {
-        boolean pagoExitoso = this.formaDePago.procesarPago();
-        if (pagoExitoso) {
-            System.out.println("Transacción " + idTransaccion + " realizada con éxito el " + fecha + ".");
-            return true;
-        } else {
-            System.out.println("Transacción " + idTransaccion + " fallida el " + fecha + ".");
-            return false;
-        }
+    public boolean fueExitosa() {
+        return exitosa;
     }
 }

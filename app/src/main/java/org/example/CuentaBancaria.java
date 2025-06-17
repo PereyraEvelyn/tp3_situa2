@@ -1,41 +1,33 @@
 package org.example;
 
 public class CuentaBancaria {
-    private String numeroCuenta;
-    private Cliente cliente;
-    private MonedaMonto saldo;
+    private String cbu;
+    private double saldo;
 
-    public CuentaBancaria(String numeroCuenta, Cliente cliente, MonedaMonto saldo) {
-        this.numeroCuenta = numeroCuenta;
-        this.cliente = cliente;
-        this.saldo = saldo;
+    public CuentaBancaria(String cbu, double saldoInicial) {
+        this.cbu = cbu;
+        this.saldo = saldoInicial;
     }
 
-    public String getNumeroCuenta() {
-        return numeroCuenta;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public MonedaMonto getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void debitar(MonedaMonto monto) {
-        if (this.saldo.getMoneda().equals(monto.getMoneda()) && this.saldo.getMonto().compareTo(monto.getMonto()) >= 0) {
-            this.saldo = new MonedaMonto(this.saldo.getMonto().subtract(monto.getMonto()), this.saldo.getMoneda());
-        } else {
-            throw new IllegalArgumentException("Saldo insuficiente o moneda incorrecta");
-        }
+    public String getCbu() {
+        return cbu;
     }
 
-     public void acreditar(MonedaMonto monto) {
-        if (this.saldo.getMoneda().equals(monto.getMoneda())) {
-            this.saldo = new MonedaMonto(this.saldo.getMonto().add(monto.getMonto()), this.saldo.getMoneda());
-        } else {
-            throw new IllegalArgumentException("Moneda incorrecta");
-        }
+    public boolean debitar(double monto) {
+    double comision = monto * 0.01; // comisión del 1%
+    double montoTotalADebitar = monto + comision;
+
+    if (montoTotalADebitar <= this.saldo) {
+        this.saldo -= montoTotalADebitar;
+        System.out.println("Debito de " + monto + " mas comision de " + comision + " realizado. Nuevo saldo: " + this.saldo);
+        return true;
+    } else {
+        System.out.println("Saldo insuficiente para cubrir el monto.");
+        return false;
     }
+}
 }

@@ -3,47 +3,34 @@ package org.example;
 import java.util.Objects;
 
 public class Moneda {
-    private String codigo;
-    private String nombre;
-    private String simbolo;
+    private String codigoISO; 
+    private String nombre;    
 
-    public Moneda(String codigo, String nombre, String simbolo) {
-        this.codigo = codigo;
+    public Moneda(String codigoISO, String nombre) {
+        this.codigoISO = codigoISO;
         this.nombre = nombre;
-        this.simbolo = simbolo;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoISO() {
+        return codigoISO;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getSimbolo() {
-        return simbolo;
+    @Override
+    public String toString() {
+        return codigoISO; 
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Moneda moneda = (Moneda) o;
-        return Objects.equals(codigo, moneda.codigo);
+        return Objects.equals(codigoISO, moneda.codigoISO);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo);
-    }
-
-    @Override
-    public String toString() {
-        return "Moneda{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", simbolo='" + simbolo + '\'' +
-                '}';
-    }
 }
