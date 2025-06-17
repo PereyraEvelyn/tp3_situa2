@@ -3,15 +3,28 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Cliente {
     private String idCliente;
     private String nombre;
-     private List<CuentaBancaria> cuentas;
+    private String email;
+    private String telefono;
+    private List<CuentaBancaria> cuentas;
 
-    public Cliente(String idCliente, String nombre) {
+    public Cliente(String idCliente, String nombre, String email, String telefono) {
         this.idCliente = idCliente;
         this.nombre = nombre;
+        this.email = email;
+        this.telefono = telefono;
         this.cuentas = new ArrayList<>();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefono() {
+        return telefono;
     }
 
     public void agregarCuenta(CuentaBancaria cuenta) {

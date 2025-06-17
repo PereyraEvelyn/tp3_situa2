@@ -2,17 +2,31 @@ package org.example;
 
 import java.util.Date;
 
-public class TarjetaDeCredito implements FormaDePago {
+public class TarjetaDeCredito implements FormaDePago, Notificable {
 
     private String numero;
     private Date fechaVencimiento;
     private Monto limiteCredito;
+    private Notificador notificador;
 
     public TarjetaDeCredito(String numero, Date fechaVencimiento, Monto limiteCredito) {
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
         this.limiteCredito = limiteCredito;
     }
+
+    @Override
+    public void setNotificador(Notificador notificador) {
+     this.notificador = notificador;
+    }
+
+   @Override
+    public void enviarNotificacion(String mensaje, Cliente cliente) {
+     if (this.notificador != null) {
+        this.notificador.enviar(mensaje, cliente);
+     }
+    }
+
      public String getNumero() {
         return numero;
     }
@@ -32,7 +46,6 @@ public class TarjetaDeCredito implements FormaDePago {
 
         if (montoAPagar.getValor() <= this.limiteCredito.getValor()) {
             System.out.println("Pago con Tarjeta de Credito APROBADO.");
-            // En un caso real, aquí se debitaría el monto del límite.
             return true;
         } else {
             System.out.println("Error: El monto excede el limite de credito disponible.");
